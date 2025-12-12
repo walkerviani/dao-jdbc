@@ -9,18 +9,29 @@ import model.entities.Department;
 public class Program2 {
 
 	public static void main(String[] args) {
-		
+
 		DepartmentDao departmentDao = DaoFactory.createDepartmentDao();
-		
+
 		System.out.println("=== TESTE 1: department insert ===");
 		Department newDepartment = new Department(null, "Sports");
 		departmentDao.insert(newDepartment);
 		System.out.println("Inserted! New id = " + newDepartment.getId());
+
 		System.out.println("=== TESTE 2: department findAll ===");
 		List<Department> list = departmentDao.findAll();
-		for(Department obj: list) {
+		for (Department obj : list) {
 			System.out.println(obj);
 		}
-	}
 
+		System.out.println("=== TESTE 3: department findById ===");
+		Department department = departmentDao.findById(5);
+		System.out.println(department);
+		
+		System.out.println("=== TESTE 3: department update ===");
+		department = departmentDao.findById(5);
+		department.setName("Culture");
+		departmentDao.update(department);
+		System.out.println("Update completed!");
+
+	}
 }
